@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #333;
+}
+
+.date-time-container{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    font-size: 46px;
+}
+
+p{
+    font-family: "Arial Narrow";
+    color: #666
+}
