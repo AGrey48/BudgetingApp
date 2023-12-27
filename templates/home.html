@@ -13,14 +13,37 @@
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script> <!-- links javascript to HTML file -->
 
-    <form action="/submit_budget" method="post">
+    <form id="budgetForm" action="/submit_budget" method="post">
         <label for="income">Income:</label>
         <input type="number" id="income" name="income"><br><br>
 
         <label for="expense">Expense:</label>
-        <input type="number" id="expense" name="expense"><br><br>
+        <input type="number" id="income" name="income"><br><br>
 
-        <input type="submit" value="Submit">
+        <input type = "submit" value = "Calculate All Income">
+
     </form>
+    <div id="resultDisplay"></div> <!--Place to show result-->
+
+    <!--Javascript code to call AJAX-->
+    <script>document.getElementById('budgetForm').addEventListener('submit', function(e) {
+        e.preventDefault(); <!--Prevents default form submission-->
+
+        var formData = new FormData(this); <!-- Grabs the data from your form -->
+
+        <!-- AJAX request to your Flask route -->
+        fetch('/submit_budget',{
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json()) <!-- assuming the response is JSON -->
+            .then(data => {
+                <!-- Display the result -->
+                document.getElementById('result').innerHTML = 'Result' + data.result;
+
+            })
+            .catch(error => console.error('Error', error));
+
+    });</script>
 </body>
 </html>
