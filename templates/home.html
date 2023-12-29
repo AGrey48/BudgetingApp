@@ -3,47 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Budget App</title>
-</head>
-<body>
-    <h1>This is my budget app!</h1>
+    <script src="{{ url_for('static', filename='script.js') }}"></script> <!-- links javascript to HTML file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- links css to HTML -->
-    <p>An application made by big sib and I.</p>
+</head>
+
+<body>
+    <h1>Asher's Budget App</h1>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- links css to HTML -->
     <div class="date-time-container">
         <p id="date-time"></p>
-    </div>
-    <script src="{{ url_for('static', filename='script.js') }}"></script> <!-- links javascript to HTML file -->
+    </div> <!-- display time -->
 
-    <form id="budgetForm" action="/submit_budget" method="post">
+    <div class="tab-container">
+        <button class="tabLinks" onclick="budgetFunct(Event, 'Data')">Data</button>
+        <button class="tabLinks" onclick="budgetFunct(Event, 'Balance')">Summary</button>
+    </div>
+
+    <div id="Data" class="tabContent">
+        <h1>Data goes here!</h1>
+    </div>
+
+    <div id="Balance" class="tabContent">
+        <form id="budgetForm" action="/submit_budget" method="post">
         <label for="income">Income:</label>
         <input type="number" id="income" name="income"><br><br>
 
         <label for="expense">Expense:</label>
-        <input type="number" id="income" name="income"><br><br>
+        <input type="number" id="expense" name="expense"><br><br>
 
         <input type = "submit" value = "Calculate All Income">
 
-    </form>
+        </form>
     <div id="resultDisplay"></div> <!--Place to show result-->
+    </div>
 
-    <!--Javascript code to call AJAX-->
-    <script>document.getElementById('budgetForm').addEventListener('submit', function(e) {
-        e.preventDefault(); <!--Prevents default form submission-->
-
-        var formData = new FormData(this); <!-- Grabs the data from your form -->
-
-        <!-- AJAX request to your Flask route -->
-        fetch('/submit_budget',{
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json()) <!-- assuming the response is JSON -->
-            .then(data => {
-                <!-- Display the result -->
-                document.getElementById('result').innerHTML = 'Result' + data.result;
-
-            })
-            .catch(error => console.error('Error', error));
-
-    });</script>
 </body>
 </html>
