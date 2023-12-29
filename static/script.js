@@ -21,26 +21,27 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     });
 
-function budgetFunct(evt, currentTab){
+function budgetFunct(evt, budget_tab){
     var i, tabContent, tabLinks;
-    console.log("function is running")
-
-    // Get all elements with class="tabContent" and hide them
+    //get all elements with class="tabContent" and hide them
     tabContent = document.getElementsByClassName("tabContent");
     for (i = 0; i < tabContent.length; i++){
-        tabContent[i].className = tabContent[i].className.replace("none");
+        tabContent[i].style.display = "none";
     }
 
-    // Get all elements with class="tabLinks" and remove class "active"
+    //Get all elements with class="tablinks" and remove the class "active"
     tabLinks = document.getElementsByClassName("tabLinks");
-    for(i = 0; i < tabLinks.length; i++){
-        tabLinks[i].className = tabLinks.className.replace(" active", "");
+    for (i = 0; i < tabLinks.length; i++){
+        tabLinks[i].className = tabLinks[i].className.replace(" active", "");
     }
 
-    document.getElementById(currentTab).style.display = "block";
-    evt.currentTarget.className += " active";
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(budget_tab).style.display = "block";
+    evt.currentTarget.className += "active";
     document.getElementById("defaultOpen").click();
 }
+
+document.addEventListener("DOMContentLoaded", budgetFunct);
 
 document.getElementById('budgetForm').addEventListener('submit', function(e) {
     e.preventDefault(); <!--Prevents default form submission-->

@@ -1,6 +1,6 @@
 * {box-sizing: border-box}
 /* separate tab and text*/
-.tab-container{
+.tab{
     float: left;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
@@ -8,7 +8,7 @@
     height: 300px;
 }
 
-.tab-container button{
+.tab button{
     display: block;
     background-color: inherit;
     color: black;
@@ -21,21 +21,26 @@
     transition: 0.3s;
 }
 
-.tab-container button:hover{
+.tab button:hover{
     background-color: #ddd;
 }
 
-.tab-container button:active{
+.tab button:active{
     background-color: #ccc;
 }
 
 .tabContent{
-    float: left;
-    padding: 0px 12px;
-    border: 1px solid #ccc;
-    width: 40%;
-    border-left: none;
-    height: 300px;
+    display:none;
+}
+
+.topright{
+    float: right;
+    cursor: pointer;
+    font-size: 28px;
+}
+
+.topright:hover{
+    color:darkgrey;
 }
 
 body {

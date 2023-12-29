@@ -9,21 +9,22 @@
 
 <body>
     <h1>Asher's Budget App</h1>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- links css to HTML -->
     <div class="date-time-container">
         <p id="date-time"></p>
     </div> <!-- display time -->
 
-    <div class="tab-container">
+    <div class="tab">
         <button class="tabLinks" onclick="budgetFunct(Event, 'Data')">Data</button>
         <button class="tabLinks" onclick="budgetFunct(Event, 'Balance')">Summary</button>
     </div>
 
     <div id="Data" class="tabContent">
+        <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
         <h1>Data goes here!</h1>
     </div>
 
     <div id="Balance" class="tabContent">
+        <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
         <form id="budgetForm" action="/submit_budget" method="post">
         <label for="income">Income:</label>
         <input type="number" id="income" name="income"><br><br>
